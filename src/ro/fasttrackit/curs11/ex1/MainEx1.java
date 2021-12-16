@@ -16,13 +16,13 @@ public class MainEx1 {
         System.out.println(classroom.getAverageGrade("Physics"));
         System.out.println(classroom.getAverageGrade());
 
-        System.out.println(classroom.getGradesForDiscipline("mathematics"));
-        System.out.println(classroom.getGradesForStudents("Asim Jeltje"));
+        System.out.println(classroom.getGradesForDiscipline(null));
+        System.out.println(classroom.getGradesForStudents(null));
 
         System.out.println(classroom.getWorstGrade("Mathematics"));
         System.out.println(classroom.getWorstGrade());
 
-        ReportGenerator report = new ReportGenerator(studentGrades);
-        report.generateReport(studentGrades);
+        ReportGenerator report = new ReportGenerator(studentGrades, "dir1/dir2/grade-reports.out");
+        report.generateReport();
     }
 }

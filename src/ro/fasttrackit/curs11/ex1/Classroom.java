@@ -2,12 +2,17 @@ package ro.fasttrackit.curs11.ex1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Classroom {
     private final List<StudentGrade> studGradeList;
 
     public Classroom (List<StudentGrade> studGradeList) {
-        this.studGradeList = new ArrayList<>(studGradeList);
+        if (studGradeList == null) {
+            this.studGradeList = new ArrayList<>();
+        } else {
+            this.studGradeList = new ArrayList<>(studGradeList);
+        }
     }
 
     public List<Integer> getGradesForDiscipline (String discipline) {
@@ -18,9 +23,16 @@ public class Classroom {
                     listOfGrades.add(element.getGrade());
                 }
             }
+        } else {
+            listOfGrades = studGradeList.stream().map(StudentGrade::getGrade).collect(Collectors.toList());
         }
         return listOfGrades;
     }
+
+    public List<Integer> getGradesForDiscipline() {
+        return getGradesForDiscipline(null);
+    }
+
     public List<Integer> getGradesForStudents (String student) {
         List<Integer> result = new ArrayList<>();
         if (student != null) {
@@ -29,9 +41,16 @@ public class Classroom {
                     result.add(element.getGrade());
                 }
             }
+        } else {
+            result = studGradeList.stream().map(StudentGrade::getGrade).collect(Collectors.toList());
         }
         return result;
     }
+
+    public List<Integer> getGradesForStudent() {
+        return getGradesForDiscipline(null);
+    }
+
     public StudentGrade getMaxGrade (String discipline) {
         int maxGrade = 0;
         StudentGrade student = null;

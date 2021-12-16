@@ -10,21 +10,23 @@ import java.util.List;
 
 public class ReportGenerator {
     private final Classroom classroom;
+    private final String filePath;
 
 
-    public ReportGenerator(List<StudentGrade> studList) {
+    public ReportGenerator(List<StudentGrade> studList, String filePath) {
         classroom = new Classroom(studList);
+        this.filePath = filePath;
     }
 
-    public void generateReport(List<StudentGrade> students) throws Exception {
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("dir1/dir2/grade-reports.out"))) {
+    public void generateReport() throws Exception {
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             StudentGrade studNotaMax = classroom.getMaxGrade();
             StudentGrade studNotaMin = classroom.getWorstGrade();
-            writer.write(studNotaMax.getName() + " " + studNotaMax.getGrade());
+            writer.write("Student " + studNotaMax.getName() + " has the biggest grade: " + studNotaMax.getGrade());
             writer.newLine();
-            writer.write(String.valueOf(classroom.getAverageGrade()));
+            writer.write(String.valueOf("The average grade is: " + classroom.getAverageGrade()));
             writer.newLine();
-            writer.write(studNotaMin.getName() + " " + studNotaMin.getGrade());
+            writer.write("Student " + studNotaMin.getName() + " has the smallest grade: " + studNotaMin.getGrade());
         }
     }
 }
