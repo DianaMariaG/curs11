@@ -17,7 +17,7 @@ public class ReadingFromFiles {
         System.out.println(("Buffered read: ")); //asta folosim mai des
         BufferedReader fileReader = new BufferedReader(new FileReader("content.txt"));
 
-        String line; //citeste linia, verific daca e diferita de null, daca e scrie si trece la urm linie
+        String line; //citeste linia, verifica daca e diferita de null, daca e scrie si trece la urm linie
         while((line=fileReader.readLine()) != null) { //si atribuire si comparare 2 in 1
             System.out.println(line);
         }
