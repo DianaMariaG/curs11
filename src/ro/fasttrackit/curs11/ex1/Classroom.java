@@ -52,11 +52,9 @@ public class Classroom {
     }
 
     public StudentGrade getMaxGrade (String discipline) {
-        int maxGrade = 0;
         StudentGrade student = null;
         for (StudentGrade element : studGradeList) {
-            if ((element.getDiscipline().equalsIgnoreCase(discipline) || discipline== null) && maxGrade < element.getGrade()) {
-                maxGrade = element.getGrade();
+            if ((element.getDiscipline().equalsIgnoreCase(discipline) || discipline== null) && student.getGrade() < element.getGrade()) {
                 student = element;
             }
         }
